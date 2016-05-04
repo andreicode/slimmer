@@ -14,39 +14,47 @@ abstract class Model {
   protected $select;
   protected $where;
 
-  public function __construct() {
+  public function __construct()
+  {
     $this->setTableName();
     $this->db = Database::Instance()->get();
   }
 
-  public function setTableName() {
+  public function setTableName()
+  {
     $this->table = strpos($name = get_called_class(),'\\') !== FALSE ? strtolower(array_pop(explode("\\",$name))) : strtolower($name);
   }
 
-  public function query($string) {
+  public function query($string)
+  {
     return $this->db->query($string)->fetchAll(\PDO::FETCH_ASSOC);
   }
 
-  public function all($string) {
+  public function all($string)
+  {
     return $this->db->query("SELECT * FROM " . $this->table)->fetchAll(\PDO::FETCH_ASSOC);
   }
 
-  public function insert($string) {
+  public function insert($string)
+  {
     return $this->db->query($string)->fetchAll(\PDO::FETCH_ASSOC);
   }
 
-  public function select($args) {
+  public function select($args)
+  {
     for($i = 0; $i < count($args); $i++)
     {
       $select
     }
   }
 
-  public function where($arg1, $op, $arg2) {
+  public function where($arg1, $op, $arg2)
+  {
     $this->where = $arg1 . $op . "'" . $arg2 . "'";
   }
 
-  public function get() {
+  public function get()
+  {
     $result = $this->db->query(
     "SELECT " . $this->select ? $this->select : "*"  .
     " FROM " . $this->where ? $this->where : "")

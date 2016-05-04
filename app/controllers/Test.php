@@ -3,7 +3,8 @@
 namespace Controller;
 
 class Test {
-  public function a() {
+  public function a()
+  {
     return 'aaa';
   }
 }
